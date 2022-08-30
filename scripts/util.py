@@ -1,5 +1,8 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
 import scipy.stats as scs
+import random
 
 
 def pooled_prob(N_A, N_B, X_A, X_B):
@@ -111,3 +114,38 @@ def min_sample_size(bcr, mde, power=0.8, sig_level=0.05):
     pooled_prob = (bcr + bcr+mde) / 2
     min_N = (2 * pooled_prob * (1 - pooled_prob) * (Z_beta + Z_alpha)**2/ mde**2)
     return min_N
+
+def plot_cumulative(upper_limit, lower_limit, r, x1):
+    plt.plot(r, upper_limit, color='green',
+            linewidth=1, label='Upper Bound')
+    plt.plot(r, lower_limit, color='red',
+            linewidth=1, label='Lower Bound')
+    plt.plot(r, x1, color='yellow', linewidth=1,
+            label='Cumulative value of yes and no')
+    plt.legend()
+    plt.show()
+
+def plotExperiment(n, x1, limits):
+        lower = limits[:, 0]
+        upper = limits[:,1]
+
+        fig, ax = plt.subplots(figsize=(12,7))
+        ax.plot(n, x1, label='Cumlative value of yes+no')
+
+        ax.plot(n, lower, label='Lower Bound')
+        ax.plot(n, upper, label='Upper Bound')
+
+        plt.legend()
+        plt.show()
+
+
+def get_bernouli_series(engagment_list, success_list):
+        bernouli_series = []
+
+        for engagment, success in zip(engagment_list, success_list):
+            no_list = (engagment - success) * [0]
+            yes_list = (success) * [1]
+            series_item = yes_list + no_list
+            random.shuffle(series_item)
+            bernouli_series += series_item
+        return np.array(bernouli_series)
