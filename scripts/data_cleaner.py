@@ -62,7 +62,7 @@ class DataCleaner():
         for idx, make in enumerate(df['device_make'].values):
             for brand in known_brands:
                 if brand in make.lower():
-                    makers[idx] = "known brand"
+                    makers[idx] = brand
                     break
         df['brand'] = makers
 
