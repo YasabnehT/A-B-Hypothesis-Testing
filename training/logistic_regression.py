@@ -1,8 +1,6 @@
 import sys
-import logging
 import mlflow.sklearn
 import mlflow
-from urllib.parse import urlparse
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import ElasticNet, LogisticRegression
@@ -11,7 +9,6 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 
 import numpy as np
 import pandas as pd
-import dvc.api
 import sys
 import warnings
 import os
