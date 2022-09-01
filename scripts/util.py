@@ -149,3 +149,13 @@ def get_bernouli_series(engagment_list, success_list):
             random.shuffle(series_item)
             bernouli_series += series_item
         return np.array(bernouli_series)
+
+
+def get_numerical_columns(df: pd.DataFrame) -> list:
+    numerical_columns = df.select_dtypes(include='number').columns.tolist()
+    return numerical_columns
+
+def get_categorical_columns(df: pd.DataFrame) -> list:
+    categorical_columns = df.select_dtypes(
+        include=['object']).columns.tolist()
+    return categorical_columns
