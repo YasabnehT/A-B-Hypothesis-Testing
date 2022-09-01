@@ -1,0 +1,15 @@
+experiment,hour,platform_os,day_of_week,brand,response
+control,19,6,Friday,known brand,0
+exposed,8,5,Friday,known brand,0
+control,15,5,Friday,known brand,0
+control,3,5,Saturday,known brand,1
+exposed,3,5,Sunday,known brand,1
+exposed,5,5,Wednesday,known brand,0
+control,12,5,Saturday,known brand,0
+control,1,5,Monday,known brand,0
+control,9,5,Thursday,known brand,1
+control,15,5,Friday,known brand,0
+control,15,5,Friday,known brand,0
+control,11,5,Saturday,known brand,0
+exposed,2,5,Thursday,known brand,0
+control,5,5,Thursday,known brand,1
