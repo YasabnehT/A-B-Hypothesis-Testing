@@ -1,0 +1,2 @@
+Training data accuracy: 0.5553319919517102
+Validation data accuracy: 0.5542168674698795
