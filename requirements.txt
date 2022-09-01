@@ -6,3 +6,4 @@ dvc
 scipy
 matplotlib
 seaborn
+xgboost
