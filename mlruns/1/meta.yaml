@@ -1,4 +1,4 @@
-artifact_location: ./mlruns/1
+artifact_location: file:///home/n/Documents/10_Academy/A-B-Hypothesis-Testing/notebooks/mlruns/1
 experiment_id: '1'
 lifecycle_stage: active
-name: Cleaned Dataset New
+name: Cleaned dataset
