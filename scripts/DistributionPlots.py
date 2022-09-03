@@ -30,18 +30,20 @@ class DistributionPlots:
         ax.axvline(x=E_cr * C_total, c='blue', alpha=0.75, linestyle='--')
         plt.xlabel('Aware')
         plt.ylabel('probability')
+        plt.title('Binomial distributions for the control. Vertical line indicates result of the exposed')
         plt.show()
         
     def cont_exp_distribution(self, C_aware, E_aware, C_total, E_total, C_cr, E_cr) -> None:
         fig, ax = plt.subplots(figsize=(12,6))
         xC = np.linspace(C_aware-49, C_aware+50, 100)
         yC = scs.binom(C_total, C_cr).pmf(xC)
-        ax.bar(xC, yC, alpha=0.5)
+        ax.bar(xC, yC, alpha=0.5, color= 'blue')
         xE = np.linspace(E_aware-49, E_aware+50, 100)
         yE = scs.binom(E_total, E_cr).pmf(xE)
-        ax.bar(xE, yE, alpha=0.5)
+        ax.bar(xE, yE, alpha=0.5, color= 'red')
         plt.xlabel('Aware')
         plt.ylabel('probability')
+        plt.title('Binomial distributions for the control (blue) and exposed (red) groups')
         #plt.show()
         
     def null_alt_distribution(self, C_total, E_total, C_cr, E_cr) -> None:

@@ -118,7 +118,7 @@ class PlottingFunctions:
              ax.fill_between(x, 0, null.pdf(x), color='blue', alpha=0.25,
                              where=(x > right))
              ax.text(-3 * stderr, null.pdf(0),
-                     'alpha = {0:.3f}'.format(1 - null.cdf(right)),
+                     'alpha = {0:.3f}'.format(sig_level), #1 - null.cdf(right) replaced with sig_level
                      fontsize=12, ha='right', color='k')
 
         # if area_type is beta

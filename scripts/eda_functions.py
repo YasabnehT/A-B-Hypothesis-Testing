@@ -69,56 +69,35 @@ def plot_count(df:pd.DataFrame, column:str, hue= None,order=None, file_name= Non
         plt.savefig(file_name, bbox_inches = 'tight')
     plt.show()
     
-def plot_bar(df:pd.DataFrame, x_col:str, y_col:str, title:str, xlabel:str, ylabel:str, file_name= None)->None:
-    plt.figure(figsize=(10, 6))
-    sns.barplot(data = df, x=x_col, y=y_col)
-    plt.title(title, size=20)
-    plt.xticks(rotation=75, fontsize=14)
-    plt.yticks( fontsize=14)
-    plt.xlabel(xlabel, fontsize=16)
-    plt.ylabel(ylabel, fontsize=16)
+    
+def plot_pie(df:pd.DataFrame, column:str, labels= None, file_name= None)->None:
+    val = df[column].value_counts()
+    lab = df[column].value_counts().index
+    if labels:
+        lab = [labels[x] for x in lab]
+    fig, ax = plt.subplots(1, figsize=(7,7))
+    ax.pie(val, labels= lab, autopct='%1.1f%%', textprops= {'fontsize': 14})
+    plt.title(f'Pie Chart of {column}', size=20, fontweight='bold')
     if file_name:
         plt.savefig(file_name, bbox_inches = 'tight')
     plt.show()
 
-def plot_heatmap(df:pd.DataFrame, title:str, cbar=False, file_name= None)->None:
-    plt.figure(figsize=(10, 6))
-    sns.heatmap(df, annot=True, cmap='viridis', vmin=0, vmax=1, fmt='.2f', linewidths=.7, cbar=cbar )
-    plt.title(title, size=18, fontweight='bold')
-    if file_name:
-        plt.savefig(file_name, bbox_inches = 'tight')
-    plt.show()
-
-def plot_box(df:pd.DataFrame, x_col:str, title:str, file_name= None) -> None:
-    plt.figure(figsize=(10, 6))
-    sns.boxplot(data = df, x=x_col)
-    plt.title(title, size=20)
-    plt.xticks(rotation=75, fontsize=14)
-    if file_name:
-        plt.savefig(file_name, bbox_inches = 'tight')
-    plt.show()
-
-def plot_box_multi(df:pd.DataFrame, x_col:str, y_col:str, title:str, file_name= None) -> None:
-    plt.figure(figsize=(10, 6))
-    sns.boxplot(data = df, x=x_col, y=y_col)
-    plt.title(title, size=20)
-    plt.xticks(rotation=75, fontsize=14)
-    plt.yticks( fontsize=14)
-    if file_name:
-        plt.savefig(file_name, bbox_inches = 'tight')
-    plt.show()
-
-def plot_scatter(df: pd.DataFrame, x_col: str, y_col: str, title: str, hue: str, style: str, file_name= None) -> None:
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(data = df, x=x_col, y=y_col, hue=hue, style=style)
-    plt.title(title, size=20)
-    plt.xticks(fontsize=14)
-    plt.yticks( fontsize=14)
-    if file_name:
-        plt.savefig(file_name, bbox_inches = 'tight')
-    plt.show()
-
-
+    
+def plot_count_compare(ax, df:pd.DataFrame, column:str, hue= None, order=None, group='full data'):
+    sns.countplot(ax= ax, data=df, x=column, order= order, hue= hue)
+    if hue:
+        ax.set_title(f'{group}: Distribution of {column} for different {hue}s')
+    else:
+        ax.set_title(f'{group}: Distribution of {column}')
+    
+    
+def plot_pie_compare(ax, df:pd.DataFrame, column:str, group='full data', labels=None)->None:
+    val = df[column].value_counts()
+    lab = df[column].value_counts().index
+    if labels:
+        lab = [labels[x] for x in lab]
+    ax.pie(val, labels= lab, autopct='%1.1f%%', textprops= {'fontsize': 14})
+    ax.set_title(f'{group}: Pie Chart of {column}', size=20, fontweight='bold')
         
     
 pd.options.display.float_format = format_float
